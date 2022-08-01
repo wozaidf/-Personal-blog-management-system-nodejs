@@ -1,11 +1,22 @@
 {
   "name": "a",
   "version": "1.0.0",
-  "description": "",
   "main": "path.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wozaidf/nodejs.git"
+  },
+  "bugs": {
+    "url": "https://github.com/wozaidf/nodejs/issues"
+  },
+  "homepage": "https://github.com/wozaidf/nodejs#readme",
+  "description": "",
+  "dependencies": {
+    "koa": "^2.13.4"
+  }
 }
