@@ -4,11 +4,11 @@ const Koa = require('koa')
 //引入router
 // const Router = require('@koa/router')
 // 引入数据库
-const { User } = require('./src/database/database')
+// const { User } = require('./src/database/database案例')
 // const router = new Router()
 const server = new Koa();
 //引用封装的router
-const {router} = require('./src/router/index')
+const { router } = require('./src/router/index')
 
 
 // router.post('/login', (ctx) => {
@@ -36,6 +36,11 @@ const {router} = require('./src/router/index')
 //     }
 // })
 
+//引入koa/cors：用于解决跨域问题
+const cors = require('@koa/cors')
+//使用cors
+server.use(cors())
+
 // 调⽤router.routes()来组装匹配好的路由，返回⼀个合并好的中间件
 // 调⽤router.allowedMethods()获得⼀个中间件，当发送了不符合的请求时，会返回 `405 Method Not Allowed` 或 `501 Not Implemented`
 server
@@ -46,4 +51,6 @@ server
 //   ctx.body = 'Hello zy';
 // });
 
-server.listen(8080)
+server.listen(8080, () => {
+    console.log('server is listening')
+})
