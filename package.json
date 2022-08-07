@@ -17,6 +17,7 @@
   "homepage": "https://github.com/wozaidf/nodejs#readme",
   "description": "",
   "dependencies": {
+    "downloadjs": "^1.4.7",
     "koa": "^2.13.4"
   }
 }
