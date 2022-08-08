@@ -24,7 +24,8 @@ async function getUserById(username) {
     const ins = await getMysql();
     //因为返回的是数组形式，所以接收的时候也要用数组来接收
     const [row] = await ins.execute(`select * from user where username = ?`, [username])
-    console.log(row)
+    // console.log(row)
+    // [ { username: 'lk', password: '200234', score: 23 } ]
     return row
 }
 // getUserById('lk')

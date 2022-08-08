@@ -1,5 +1,8 @@
 //处理数据
 const { getUserById } = require('../database/databases2.js')
+//引入生成token的函数
+const {JwtCreate} = require ('../middleware/jwt')
+
 async function getUserInfoByUserName(username, password) {
     const rows = await getUserById(username)
     //调用getUserById函数会去数据库中查找用户输入的名字是否存在数据库中，如果没有则返回为空数组
@@ -10,7 +13,9 @@ async function getUserInfoByUserName(username, password) {
     const user = rows[0]
     //前一个password为数据库中存入的密码，后一个password为用户输入的密码
     if (user.password === password) {
-        return user;
+        //生成用户token
+       const usertoken = JwtCreate(user)
+        return {...user,usertoken};
     }
     return null;
     // if(User[username] && User[username].password === password){

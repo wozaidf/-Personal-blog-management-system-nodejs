@@ -10,6 +10,7 @@ const Koa = require('koa')
 const server = new Koa();
 //引用封装的router
 const { router } = require('./src/router/index')
+const {jwtValidateMd} = require('./src/middleware/jwt')
 
 
 // router.post('/login', (ctx) => {
@@ -42,6 +43,9 @@ const cors = require('@koa/cors');
 const koaBody = require('koa-body');
 //使用cors
 server.use(cors())
+//中间件
+server.use(jwtValidateMd)
+//koa-body用于接收form-data文件
 server.use(koaBody({
     multipart: true,
     encoding: 'utf-8',
@@ -61,4 +65,4 @@ server
 //   ctx.body = 'Hello zy';
 // });
 
-server.listen(8080, () => { console.log('服务器已开启') }) //本地IP地址
+server.listen(8081, () => { console.log('服务器已开启') }) //本地IP地址

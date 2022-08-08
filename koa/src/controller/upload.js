@@ -12,7 +12,7 @@ async function uploadController(ctx) {
     // ctx.req.on('end', () => {
     //     console.log('文件读取完成')
     // })
-    console.log(ctx.request.body)
+    // console.log(ctx.request.body)
     // console.log(ctx.request.files)
     //将request上的body部分传入给响应
     ctx.body = ctx.request.body

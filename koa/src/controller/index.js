@@ -17,7 +17,7 @@ async function LoginController(ctx) {
         //ctx.res.body=ctx.body为响应体
         ctx.body = {
             success: true,
-            data:'成功登入'
+            data:userInfo
         }
     } else {
         ctx.body = {
