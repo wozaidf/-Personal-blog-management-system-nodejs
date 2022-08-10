@@ -1,6 +1,6 @@
 //引入mysql
 const mysql = require('mysql2/promise')
-
+const mysqlConfig = require('../../config.json')
 
 //设计模式
 //单例模式：避免用户多次请求数据库
@@ -9,13 +9,8 @@ async function getMysql() {
     if (connection) {
         return connection;
     }
-    //连接数据库
-    connection = await mysql.createConnection({
-        host: '47.97.158.113',
-        user: 'root',
-        password: 'Lk200234520@',
-        database: 'nodejs-mysql',
-    });
+    //连接数据库//连接外面文件的数据库：防止数据库泄露
+    connection = await mysql.createConnection(mysqlConfig);
     return connection;
 
 }
@@ -23,7 +18,7 @@ async function getMysql() {
 async function getUserById(username) {
     const ins = await getMysql();
     //因为返回的是数组形式，所以接收的时候也要用数组来接收
-    const [row] = await ins.execute(`select * from user where username = ?`, [username])
+    const [row] = await ins.execute('select * from `user` where `username` = ?', [username])
     // console.log(row)
     // [ { username: 'lk', password: '200234', score: 23 } ]
     return row

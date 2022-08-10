@@ -1,3 +1,4 @@
+//从router第二个就来这
 const { getUserInfoByUserName } = require('../service/index')
 
 //承接请求，回应请求（这个文件的作用）
@@ -17,7 +18,7 @@ async function LoginController(ctx) {
         //ctx.res.body=ctx.body为响应体
         ctx.body = {
             success: true,
-            data:userInfo
+            data:userInfo,   
         }
     } else {
         ctx.body = {

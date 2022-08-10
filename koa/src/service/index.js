@@ -13,8 +13,9 @@ async function getUserInfoByUserName(username, password) {
     const user = rows[0]
     //前一个password为数据库中存入的密码，后一个password为用户输入的密码
     if (user.password === password) {
-        //生成用户token
+        //验证用户的密码正确时后，生成一个token
        const usertoken = JwtCreate(user)
+       console.log('密码正确，token已生成')
         return {...user,usertoken};
     }
     return null;

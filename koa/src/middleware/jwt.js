@@ -1,5 +1,6 @@
 const JwtToken = require('jsonwebtoken')
 const secret = 'miyao'
+//建立白名单：用户在没有登入的情况下也可以进行访问
 const whiteList = ['/login']
 async function jwtValidateMd(ctx, next) {
     //前端的token在ctx.headers上
@@ -10,15 +11,14 @@ async function jwtValidateMd(ctx, next) {
     if (whiteList.includes(url)) {
         await next();
     } else {
-        //取请求中的token
+        //取请求过来的token
         const token = ctx.headers.token
         // console.log(token)
         //判断token是否解析成功
         if (jwtDecodeSv(token, secret)) {
-            console.log(jwtDecodeSv(token, secret))
+            console.log('token解析成功')
             await next();
         } else {
-            console.log('haha')
             ctx.body = {
                 success: false,
                 msg: 'token校验失败'
@@ -50,12 +50,13 @@ function jwtDecodeSv(token) {
         try {
             //如果有token解析错误，不应该直接报错导致程序崩了
             const data = JwtToken.verify(token, secret)
+
             console.log(data)
             return data
         } catch (err) {
             //有错误在这给我报出来，我的程序继续执行
             console.log('ERROR',err)
-            return null
+        //     return null
         }
 }
 
